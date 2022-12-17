@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="PP_2_3_1_crud" />
+        <module name="PP_2_3_1_crud1" />
         <module name="spring-mvc" />
       </profile>
     </annotationProcessing>

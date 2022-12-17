@@ -16,7 +16,6 @@ public class UserServiceImpl implements UserService {
         this.userDao = userDao;
     }
     @Override
-    @Transactional
     public void saveUser(User user) {
         userDao.saveUser(user);
     }
@@ -32,13 +31,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void update(User updateUser) {
         userDao.update(updateUser);
     }
 
     @Override
-    @Transactional
     public void delete(int id) {
         userDao.delete(id);
     }
