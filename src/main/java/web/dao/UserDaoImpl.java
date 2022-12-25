@@ -22,15 +22,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> getUsers() {
-        return entityManager.createQuery("select a from User a", User.class).getResultList();
+        return entityManager.createQuery("from User").getResultList();
     }
 
     @Override
     public User getUserById(int id) {
-        TypedQuery<User> typedQuery = entityManager.createQuery("select a from User a  where a.id=:id", User.class);
-        typedQuery.setParameter("id", id);
-        return typedQuery.getResultList().stream().findAny().orElse(null);
+        return entityManager.find(User.class, id);
     }
 
     @Override
@@ -42,8 +41,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void delete(int id) {
-        entityManager.createQuery("delete from User where id = :id")
-                .setParameter("id", id)
-                .executeUpdate();
+        entityManager.remove(getUserById(id));
     }
 }
