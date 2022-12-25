@@ -11,13 +11,13 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
-    private UserDao userDao;
+    private final UserDao userDao;
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
     @Override
-    public void saveUser(User user) {
-        userDao.saveUser(user);
+    public void addUser(User user) {
+        userDao.addUser(user);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User updateUser) {
-        userDao.update(updateUser);
+    public void update(int id, User updateUser) {
+        userDao.update(id, updateUser);
     }
 
     @Override
