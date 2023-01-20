@@ -18,13 +18,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void addUser(User user) {
-        entityManager.persist(user);
+        entityManager.merge(user);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> getUsers() {
-        return entityManager.createQuery("from User").getResultList();
+        return entityManager.createQuery("from User", User.class).getResultList();
     }
 
     @Override
@@ -34,9 +33,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void update(int id, User updateUser) {
-        User userToUpdate = getUserById(id);
-        userToUpdate.setName(updateUser.getName());
-        userToUpdate.setLastName(updateUser.getLastName());
+        entityManager.merge(updateUser);
     }
 
     @Override
